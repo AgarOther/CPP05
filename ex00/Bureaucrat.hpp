@@ -5,55 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 13:56:00 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/01/27 14:39:02 by scraeyme         ###   ########.fr       */
+/*   Created: 2025/04/29 13:03:20 by scraeyme          #+#    #+#             */
+/*   Updated: 2025/04/29 16:58:46 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
-#include <exception>
-#include <iostream>
-#include <string>
-
-class GradeTooHighException : public std::exception
-{
-	public:
-		GradeTooHighException(const char *msg);
-		virtual ~GradeTooHighException() throw();
-		const char* what() const throw();
-	private:
-		std::string _message;
-};
-
-class GradeTooLowException : public std::exception
-{
-	public:
-		GradeTooLowException(const char *msg);
-		virtual ~GradeTooLowException() throw();
-		const char* what() const throw();
-	private:
-		std::string _message;
-};
+# include <string>
 
 class Bureaucrat
 {
 	public:
 		Bureaucrat();
+		Bureaucrat(const std::string &name, const unsigned char &grade);
 		Bureaucrat(const Bureaucrat &copy);
-		Bureaucrat &operator=(Bureaucrat const &obj);
+		Bureaucrat &operator=(const Bureaucrat &obj);
 		~Bureaucrat();
 
-		Bureaucrat(const std::string &name, int grade);
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
-		std::string getName() const;
-		int getGrade() const;
-
-		void incGrade();
-		void decGrade();
-	private:	
-		std::string _name;
-		int _grade;
+		const std::string &getName() const;
+		const unsigned char &getGrade() const;
+	private:
+		const std::string _name;
+		unsigned char _grade;
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &obj);
+
+#endif

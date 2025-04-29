@@ -5,29 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 13:55:48 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/01/27 14:45:56 by scraeyme         ###   ########.fr       */
+/*   Created: 2025/04/29 12:56:51 by scraeyme          #+#    #+#             */
+/*   Updated: 2025/04/29 17:00:22 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include <cstdlib>
+#include <iostream>
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	int	grade;
+	Bureaucrat ptdrTesQui;
+	Bureaucrat bureaucrat("Jesus", 1);
+	Bureaucrat pasOuf("Nul", 150);
+	Bureaucrat seigneur("Dieu", 5);
 
-	if (ac != 3)
-		return (1);
-	grade = atoi(av[2]);
-	if (grade == 0)
-		return (2);
-	try
-	{
-		Bureaucrat testSubject(av[1], grade);
-		std::cout << testSubject;
-	} catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	std::cout << ptdrTesQui << std::endl;
+	std::cout << bureaucrat << std::endl;
+	std::cout << pasOuf << std::endl;
+	std::cout << seigneur << std::endl;
 }
