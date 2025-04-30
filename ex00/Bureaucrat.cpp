@@ -67,6 +67,20 @@ const unsigned char &Bureaucrat::getGrade() const
 	return (_grade);
 }
 
+void Bureaucrat::rankUp()
+{
+	if (_grade - 1 == 0)
+		throw GradeTooHighException();
+	_grade -= 1;
+}
+
+void Bureaucrat::rankDown()
+{
+	if (_grade + 1 > 150)
+		throw GradeTooLowException();
+	_grade += 1;
+}
+
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &obj)
 {
 	std::cout << obj.getName() << ", bureaucrat grade " << (int)obj.getGrade();
