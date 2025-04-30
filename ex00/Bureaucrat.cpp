@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:06:25 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/29 16:59:28 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:26:33 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ Bureaucrat::Bureaucrat(const std::string &name, const unsigned char &grade) : _n
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("[EXCEPTION] Grade is too high!");
+	return ("Grade is too high!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("[EXCEPTION] Grade is too low!");
+	return ("Grade is too low!");
 }
 
 const std::string &Bureaucrat::getName() const
@@ -71,14 +71,14 @@ void Bureaucrat::rankUp()
 {
 	if (_grade - 1 == 0)
 		throw GradeTooHighException();
-	_grade -= 1;
+	_grade--;
 }
 
 void Bureaucrat::rankDown()
 {
 	if (_grade + 1 > 150)
 		throw GradeTooLowException();
-	_grade += 1;
+	_grade++;
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &obj)

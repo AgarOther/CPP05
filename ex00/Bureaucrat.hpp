@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:03:20 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/29 16:58:46 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:26:08 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ class Bureaucrat
 
 		const std::string &getName() const;
 		const unsigned char &getGrade() const;
-                void rankUp();
-                void rankDown();
+		void rankUp();
+		void rankDown();
 	private:
 		const std::string _name;
 		unsigned char _grade;
