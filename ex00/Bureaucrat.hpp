@@ -37,6 +37,8 @@ class Bureaucrat
 
 		const std::string &getName() const;
 		const unsigned char &getGrade() const;
+                void rankUp();
+                void rankDown();
 	private:
 		const std::string _name;
 		unsigned char _grade;
