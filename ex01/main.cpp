@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:56:51 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/30 20:07:16 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/04/30 20:07:05 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,19 @@ int	main(void)
 	try
 	{
 		Bureaucrat bureaucrat;
-		std::cout << bureaucrat << std::endl;
-	} catch (const std::exception &e)
-	{
-		e.what();
-	}
-	try
-	{
-		Bureaucrat bureaucrat("Jesus", 1);
-		std::cout << bureaucrat << std::endl;
-		bureaucrat.rankUp();
+		Form form;
+
+		bureaucrat.signForm(form);
 	} catch (const std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 	try
 	{
-		Bureaucrat bureaucrat("Dieu", 0);
-		std::cout << bureaucrat << std::endl;
-	} catch (const std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		Bureaucrat bureaucrat("Useless", 150);
-		std::cout << bureaucrat << std::endl;
-		bureaucrat.rankDown();
+		Bureaucrat bureaucrat("mbatty", 149);
+		Form form("skill boost", 148, 1);
+
+		bureaucrat.signForm(form);
 	} catch (const std::exception &e)
 	{
 		std::cout << e.what() << std::endl;

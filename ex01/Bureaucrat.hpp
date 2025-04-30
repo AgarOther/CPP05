@@ -6,13 +6,14 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:03:20 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/30 19:51:32 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/04/30 20:04:17 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+# include "Form.hpp"
 # include <string>
 
 class Bureaucrat
@@ -24,6 +25,13 @@ class Bureaucrat
 		Bureaucrat &operator=(const Bureaucrat &obj);
 		~Bureaucrat();
 
+		const std::string &getName() const;
+		const unsigned char &getGrade() const;
+		void rankUp();
+		void rankDown();
+
+		void signForm(Form &form);
+
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -34,11 +42,6 @@ class Bureaucrat
 			public:
 				virtual const char *what() const throw();
 		};
-
-		const std::string &getName() const;
-		const unsigned char &getGrade() const;
-		void rankUp();
-		void rankDown();
 	private:
 		const std::string _name;
 		unsigned char _grade;

@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 13:06:25 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/30 19:57:28 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/04/30 20:06:51 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ Bureaucrat::Bureaucrat(const std::string &name, const unsigned char &grade) : _n
 {
 	std::cout << "A Bureaucrat (" << name << ") spawned!" << std::endl;
 	if (grade > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (grade == 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	_grade = grade;
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high!");
+	return ("[Bureaucrat] Grade is too high!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low!");
+	return ("[Bureaucrat] Grade is too low!");
 }
 
 const std::string &Bureaucrat::getName() const
@@ -70,14 +70,14 @@ const unsigned char &Bureaucrat::getGrade() const
 void Bureaucrat::rankUp()
 {
 	if (_grade - 1 == 0)
-		throw GradeTooHighException();
+		throw Bureaucrat::Bureaucrat::GradeTooHighException();
 	_grade--;
 }
 
 void Bureaucrat::rankDown()
 {
 	if (_grade + 1 > 150)
-		throw GradeTooLowException();
+		throw Bureaucrat::Bureaucrat::GradeTooLowException();
 	_grade++;
 }
 
@@ -85,4 +85,9 @@ std::ostream &operator<<(std::ostream &os, Bureaucrat const &obj)
 {
 	std::cout << obj.getName() << ", bureaucrat grade " << (int)obj.getGrade();
 	return (os);
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+	form.beSigned(*this);
 }
