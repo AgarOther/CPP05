@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:17:09 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/30 20:04:02 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:38:59 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ class Form
 		const unsigned char _signGrade;
 		const unsigned char _execGrade;
 };
+
+std::ostream &operator<<(std::ostream &os, Form const &obj);
 
 #endif

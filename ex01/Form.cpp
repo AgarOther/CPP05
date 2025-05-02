@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:25:01 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/30 20:08:55 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:41:28 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
 		throw Form::GradeTooLowException();
 	}
 		_signed = true;
-	std::cout << "Bureaucrat " << bureaucrat.getName() << " signed " << _name << std::endl;
+	std::cout << bureaucrat << " signed " << *this << std::endl;
 }
 
 const char *Form::GradeTooHighException::what() const throw()
@@ -89,7 +89,7 @@ const char *Form::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &os, Form const &obj)
 {
-	std::cout << "Form named " << obj.getName() << " (signed: "<< obj.isSigned() << "). Min sign grade: " <<
-		obj.getSignGrade() << " | Min exec grade: " << obj.getSignGrade() << std::endl;
+	std::cout << "Form named " << obj.getName() << " (signed: "<< (obj.isSigned() ? "true" : "false") << "). Min sign grade: " <<
+		(int) obj.getSignGrade() << " | Min exec grade: " << (int)obj.getExecGrade();
 	return (os);
 }

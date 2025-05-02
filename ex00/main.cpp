@@ -6,11 +6,12 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:56:51 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/04/30 20:07:16 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/02 15:42:55 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "colors.hpp"
 #include <iostream>
 
 int	main(void)
@@ -21,7 +22,7 @@ int	main(void)
 		std::cout << bureaucrat << std::endl;
 	} catch (const std::exception &e)
 	{
-		e.what();
+		std::cout << RED << e.what() << RESET << std::endl;
 	}
 	try
 	{
@@ -30,7 +31,7 @@ int	main(void)
 		bureaucrat.rankUp();
 	} catch (const std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << RED << e.what() << RESET << std::endl;
 	}
 	try
 	{
@@ -38,7 +39,7 @@ int	main(void)
 		std::cout << bureaucrat << std::endl;
 	} catch (const std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << RED << e.what() << RESET << std::endl;
 	}
 	try
 	{
@@ -47,6 +48,6 @@ int	main(void)
 		bureaucrat.rankDown();
 	} catch (const std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << RED << e.what() << RESET << std::endl;
 	}
 }
