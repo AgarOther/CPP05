@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/05 13:59:55 by scraeyme          #+#    #+#             */
+/*   Updated: 2025/05/05 14:49:04 by scraeyme         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
+
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential", 25, 5), _target("unknown") {}
+
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("Presidential", 25, 5), _target(target) {}
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy)
+{
+	_target = copy._target;
+	*this = copy;
+}
+
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &obj)
+{
+	if (&obj == this)
+		return (*this);
+	_target = obj._target;
+	return (*this);
+}
+
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+	
+}
+
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const
+{
+	(void) executor;
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
