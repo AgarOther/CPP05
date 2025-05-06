@@ -21,7 +21,6 @@ AForm::AForm() : _name("default"), _signed(false), _signGrade(150), _execGrade(1
 
 AForm::AForm(const AForm &copy) : _name(copy._name), _signed(copy._signed), _signGrade(copy._signGrade), _execGrade(copy._execGrade)
 {
-	(void) copy;
 	*this = copy;
 }
 
