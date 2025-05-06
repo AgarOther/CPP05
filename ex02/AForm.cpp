@@ -6,16 +6,17 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:25:01 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/05/05 13:52:59 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/06 23:49:41 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "colors.hpp"
 #include <iostream>
 
 AForm::AForm() : _name("default"), _signed(false), _signGrade(150), _execGrade(150)
 {
-	std::cout << "A AForm (default) spawned!" << std::endl;
+	std::cout << "An AForm (default) spawned!" << std::endl;
 }
 
 AForm::AForm(const AForm &copy) : _name(copy._name), _signed(copy._signed), _signGrade(copy._signGrade), _execGrade(copy._execGrade)
@@ -32,12 +33,12 @@ AForm &AForm::operator=(const AForm &obj)
 
 AForm::~AForm()
 {
-	std::cout << "A AForm despawned!" << std::endl;
+	std::cout << "An AForm despawned!" << std::endl;
 }
 
 AForm::AForm(const std::string &name, const int &signGrade, const int &execGrade) : _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
 {
-	std::cout << "A AForm (" << name << ") spawned!" << std::endl;
+	std::cout << "An AForm (" << name << ") spawned!" << std::endl;
 	if (_signGrade > 150 || _execGrade > 150)
 		throw AForm::GradeTooLowException();
 	else if (_signGrade == 0 || _execGrade == 0)
@@ -67,14 +68,14 @@ const unsigned char &AForm::getExecGrade() const
 void AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (_signed)
-		std::cout << "Bureaucrat " << bureaucrat.getName() << " tried signing a Aform already signed (" << _name << ")" << std::endl;
+		std::cout << RED << bureaucrat << " tried signing a form already signed (" << *this << ")" << RESET <<std::endl;
 	if (bureaucrat.getGrade() > _signGrade)
 	{
-		std::cout << "Bureaucrat " << bureaucrat.getName() << " couldn't sign Aform " << _name << " because grade is too low!" << std::endl;
+		std::cout << RED << bureaucrat << " couldn't sign form " << *this << " because grade is too low!" << RESET <<std::endl;
 		throw AForm::GradeTooLowException();
 	}
 		_signed = true;
-	std::cout << bureaucrat << " signed " << *this << std::endl;
+	std::cout << YELLOW << bureaucrat << " signed " << *this << RESET << std::endl;
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -89,7 +90,7 @@ const char *AForm::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &os, AForm const &obj)
 {
-	std::cout << "AForm named " << obj.getName() << " (signed: "<< (obj.isSigned() ? "true" : "false") << "). Min sign grade: " <<
-		(int) obj.getSignGrade() << " | Min exec grade: " << (int)obj.getExecGrade();
+	std::cout << "Form named " << obj.getName() << " (signed: "<< (obj.isSigned() ? "true" : "false") << " | Min sign grade: " <<
+		(int) obj.getSignGrade() << " | Min exec grade: " << (int)obj.getExecGrade() << ")";
 	return (os);
 }

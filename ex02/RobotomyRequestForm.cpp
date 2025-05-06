@@ -6,11 +6,12 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:59:55 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/05/06 18:47:14 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/06 23:48:12 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+#include "colors.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -19,7 +20,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy", 72, 45), _target(
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("Robotomy", 72, 45), _target(target) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy)
 {
 	_target = copy._target;
 	*this = copy;
@@ -40,8 +41,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
+	if (!isSigned())
+	{
+		std::cout << RED << executor << " tried executing without signing " << *this << RESET << std::endl;
+		return;
+	}
 	if (executor.getGrade() <= getExecGrade())
 	{
+		std::cout << GREEN << executor << " executed " << *this << RESET << std::endl;
 		std::cout << "*drilling noises*" << std::endl;
 		srand(std::time(NULL));
 		if (rand() % 2)

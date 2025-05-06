@@ -6,11 +6,12 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:25:01 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/05/02 15:41:28 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/06 23:49:37 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "colors.hpp"
 #include <iostream>
 
 Form::Form() : _name("default"), _signed(false), _signGrade(150), _execGrade(150)
@@ -67,14 +68,14 @@ const unsigned char &Form::getExecGrade() const
 void Form::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (_signed)
-		std::cout << "Bureaucrat " << bureaucrat.getName() << " tried signing a form already signed (" << _name << ")" << std::endl;
+		std::cout << RED << bureaucrat << " tried signing a form already signed (" << *this << ")" << RESET <<std::endl;
 	if (bureaucrat.getGrade() > _signGrade)
 	{
-		std::cout << "Bureaucrat " << bureaucrat.getName() << " couldn't sign form " << _name << " because grade is too low!" << std::endl;
+		std::cout << RED << bureaucrat << " couldn't sign form " << *this << " because grade is too low!" << RESET <<std::endl;
 		throw Form::GradeTooLowException();
 	}
 		_signed = true;
-	std::cout << bureaucrat << " signed " << *this << std::endl;
+	std::cout << YELLOW << bureaucrat << " signed " << *this << RESET << std::endl;
 }
 
 const char *Form::GradeTooHighException::what() const throw()
@@ -89,7 +90,7 @@ const char *Form::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &os, Form const &obj)
 {
-	std::cout << "Form named " << obj.getName() << " (signed: "<< (obj.isSigned() ? "true" : "false") << "). Min sign grade: " <<
-		(int) obj.getSignGrade() << " | Min exec grade: " << (int)obj.getExecGrade();
+	std::cout << "Form named " << obj.getName() << " (signed: "<< (obj.isSigned() ? "true" : "false") << " | Min sign grade: " <<
+		(int) obj.getSignGrade() << " | Min exec grade: " << (int)obj.getExecGrade() << ")";
 	return (os);
 }
