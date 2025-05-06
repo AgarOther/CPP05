@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:56:51 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/05/05 14:50:18 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:45:02 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,19 @@ int	main(void)
 {
 	try
 	{
-		Bureaucrat bureaucrat("test", 1);
+		Bureaucrat bureaucrat("test", 8);
 		PresidentialPardonForm form("lol");
+
+		bureaucrat.signForm(form);
+		bureaucrat.executeForm(form);
+	} catch (const std::exception &e)
+	{
+		std::cout << RED << e.what() << RESET << std::endl;
+	}
+	try
+	{
+		Bureaucrat bureaucrat("test", 8);
+		RobotomyRequestForm form("lol");
 
 		bureaucrat.signForm(form);
 		bureaucrat.executeForm(form);

@@ -6,7 +6,7 @@
 /*   By: scraeyme <scraeyme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:59:55 by scraeyme          #+#    #+#             */
-/*   Updated: 2025/05/05 14:49:04 by scraeyme         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:40:42 by scraeyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 void PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-	(void) executor;
-	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	if (executor.getGrade() <= getExecGrade())
+		std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	else
+		throw AForm::GradeTooLowException();
 }
