@@ -40,7 +40,7 @@ AForm::AForm(const std::string &name, const int &signGrade, const int &execGrade
 	std::cout << "An AForm (" << name << ") spawned!" << std::endl;
 	if (_signGrade > 150 || _execGrade > 150)
 		throw AForm::GradeTooLowException();
-	else if (_signGrade == 0 || _execGrade == 0)
+	else if (_signGrade <= 0 || _execGrade <= 0)
 		throw AForm::GradeTooHighException();
 }
 
